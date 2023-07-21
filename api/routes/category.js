@@ -40,4 +40,21 @@ router.get('',(req,res)=>{
     })
 })
 
+// Delete category
+router.delete('/:id',(req,res)=>{
+    console.log(req.params.id);
+    Category.findByIdAndRemove(req.params.id)
+    .then(result=>{
+        res.status(200).json({
+            msg:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
 module.exports = router;
